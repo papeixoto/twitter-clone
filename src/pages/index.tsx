@@ -1,5 +1,6 @@
 import { type NextPage } from "next";
 import Head from "next/head";
+import Image from "next/image";
 import { SignInButton, useUser } from "@clerk/nextjs";
 
 import { api } from "~/utils/api";
@@ -21,10 +22,12 @@ const CreatePostWizard = () => {
 
   return (
     <div className="w flex gap-3">
-      <img
+      <Image
         src={user.profileImageUrl}
         alt="Profile image"
         className="h-14 w-14 rounded-full"
+        width={56}
+        height={56}
       />
       <input
         placeholder="type some emojis!"
@@ -40,7 +43,13 @@ const PostView = (props: PostWithUser) => {
 
   return (
     <div key={post.id} className="flex gap-3 border-b border-slate-400 p-4">
-      <img src={author.profileImageUrl} className="h-14 w-14 rounded-full" />
+      <Image
+        src={author.profileImageUrl}
+        className="h-14 w-14 rounded-full"
+        alt={`@${author.username} profile picture`}
+        width={56}
+        height={56}
+      />
       <div className="felx flex-col">
         <div className="flex gap-1 text-slate-300">
           <span>{`@${author.username}`}</span>
