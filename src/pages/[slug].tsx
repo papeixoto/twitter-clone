@@ -2,7 +2,7 @@ import { type GetStaticProps, type NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import { api } from "~/utils/api";
-import { PostView } from "./postView";
+import { PostView } from "../components/postView";
 
 const ProfileFeed = (props: { userId: string }) => {
   const { data, isLoading } = api.posts.getPostsByUserId.useQuery({
