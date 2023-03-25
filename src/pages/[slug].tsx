@@ -67,7 +67,7 @@ import { prisma } from "~/server/db";
 import superjson from "superjson";
 import { PageLayout } from "~/components/layout";
 import { LoadingPage } from "~/components/loading";
-import { PostView } from "./PostView";
+import { PostView } from "./postView";
 
 // we're prefetching the data for the page
 export const getStaticProps: GetStaticProps = async (context) => {
