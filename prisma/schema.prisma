@@ -11,8 +11,15 @@ datasource db {
     relationMode = "prisma"
 }
 
-model Example {
+// cuid is consecutive while being unique
+// indexing by authorId allows us to query all posts by a specific author
+model Post {
     id        String   @id @default(cuid())
     createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+
+    content String @db.VarChar(255)
+
+    authorId String
+
+    @@index([authorId])
 }
