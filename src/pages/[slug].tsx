@@ -2,6 +2,7 @@ import { type GetStaticProps, type NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import { api } from "~/utils/api";
+import { PostView } from "./postView";
 
 const ProfileFeed = (props: { userId: string }) => {
   const { data, isLoading } = api.posts.getPostsByUserId.useQuery({
@@ -53,7 +54,9 @@ const ProfilePage: NextPage<PageProps> = ({ username }) => {
           />
         </div>
         <div className="h-[64px]"></div>
-        <div className="bg-black p-4 text-2xl font-bold">{`@${data.username}`}</div>
+        <div className="bg-black p-4 text-2xl font-bold">{`@${
+          data.username ?? ""
+        }`}</div>
         <div className="w-full border-b border-slate-400" />
         <ProfileFeed userId={data.id} />
       </PageLayout>
@@ -67,7 +70,6 @@ import { prisma } from "~/server/db";
 import superjson from "superjson";
 import { PageLayout } from "~/components/layout";
 import { LoadingPage } from "~/components/loading";
-import { PostView } from "./postView";
 
 // we're prefetching the data for the page
 export const getStaticProps: GetStaticProps = async (context) => {
