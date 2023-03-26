@@ -1,28 +1,70 @@
-# Create T3 App
+# Twitter Clone (using T3 Stack)
 
+It's a simplistic twitter clone where users can only post emojis. It's a good example of how to use the T3 Stack and uses more advanced features like using trpc for SSG, auth with external sources, rate limiting, logging and more.
 This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+The project is done following [this tutorial](https://www.youtube.com/watch?v=YkOSUVzOAA4) by Theo.
 
-## What's next? How do I make an app with this?
+# Stack
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+The main technologies used in this project are:
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+- [Next.js](https://nextjs.org) as a full-stack React-Node framework
+- [Clerk](https://clerk.com/) for authentication
+- [Prisma](https://prisma.io) for database access
+- [Tailwind CSS](https://tailwindcss.com) for styling
+- [tRPC](https://trpc.io) for API routing
+- [Upstash](https://upstash.com) for rate limiting
+- [Axiom](https://axiom.co) for logging
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+# Functionality
 
-## Learn More
+It's a simplistic twitter clone where users can only post emojis.
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+Users can login with github account.
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+- Homepage
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+There's a homepage with a feed and where users can post emojis. The feed is sorted with most recent posts first.
 
-## How do I deploy this?
+![Home feed](/images/home_page.png)
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+- Single post page
+
+When the users clicks a post they go to a single post page. This page is generated with SSG using trpc to fetch the data. This is great for sharing and SEO purposes since the bot will be able to crawl the page.
+
+![post page](/images/post_page.png)
+
+Clicking a username will take you to the user's profile page. The profile page has all the user's posts. The user info is fetched on the server side for sharing and SEO.
+
+- Profile page
+
+![post page](/images/profile_page.png)
+
+# Running the app
+
+1. Cloning the repo
+
+```bash
+git clone <this repo url>
+```
+
+2. Install dependencies
+
+```bash
+npm install
+```
+
+3. Create a `.env ` file with the contennt of `.env.example`. Signup to upstash, clerk, planetscale and copy and fill the values acordingly.
+
+4. Run the app
+
+```bash
+npm run dev
+```
+
+## Deployment
+
+The project uses the following to deploy:
+
+- [Vercel](https://vercel.com) for hosting the Next.js app
+- [Planetscale](https://planetscale.com) for hosting the database
